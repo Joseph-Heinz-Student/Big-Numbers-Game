@@ -4,10 +4,12 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
+const VERSION = "0.0.1-alpha";
 
 class GAME {
     constructor(){
         this.number = 0;
+        this.big_number = 0;
         this.TPS = 20;
     }
 }
@@ -21,9 +23,12 @@ const load = (game) => {
         if(LS.gameSave !== null && LS.gameSave !== "undefined"){
             console.log(LS.gameSave);
             let gameSave = JSON.parse(LS.gameSave);
-            for(let item in gameSave){
-                game[item] = gameSave[item]
+            for(let item in game){
+                if(gameSave[item] == null){
+                    gameSave[item] = game[item];
+                }
             }
+            game = gameSave;
         }
     }
     return game;
@@ -45,3 +50,10 @@ function tryload(){
         save(Game);
     },1000/Game.TPS);
 }
+
+const prestige = () => {
+    if(Game.number > 0){
+        Game.number = 0;
+        Game.big_number++;
+    }
+};
