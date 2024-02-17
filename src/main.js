@@ -48,6 +48,7 @@ function tryload(){
     gameLoop = accurateTimer(() => {
         document.title = Game.number;
         save(Game);
+        render(Game);
     },1000/Game.TPS);
 }
 
