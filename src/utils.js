@@ -28,3 +28,14 @@ const accurateTimer = (fn, time = 1000) => {
     // accurateTimer.
     return { cancel };
 };
+
+const getBigNumberPrice = (game) => {
+  let price = Math.round(1.175**(game.big_number*0.8));
+  return price;
+};
+
+const getBigNumberMult = (game) => {
+  let mult = Math.round(1.05**(game.big_number*.75));
+  return mult;
+};
+
