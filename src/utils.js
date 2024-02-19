@@ -35,7 +35,7 @@ const getBigNumberPrice = (game) => {
 };
 
 const getBigNumberMult = (game) => {
-  let mult = Math.round(1.05**(game.big_number*.75));
+  let mult = 1.05**(game.big_number*.75);
   return mult;
 };
 

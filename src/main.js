@@ -4,7 +4,7 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
-const VERSION = "0.0.4-alpha";
+const VERSION = "0.0.5-alpha";
 
 class GAME {
     constructor(){
