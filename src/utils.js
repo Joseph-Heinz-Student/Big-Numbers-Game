@@ -39,3 +39,12 @@ const getBigNumberMult = (game) => {
   return mult;
 };
 
+const getEssenceCost = (game) => {
+  let price = Math.round(1.55*game.essence+1);
+  return price;
+};
+
+const getEssenceMult = (game) => {
+  let mult = (0.015*game.essence)+1;
+  return mult;
+};

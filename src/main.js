@@ -4,13 +4,14 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
-const VERSION = "0.0.6-alpha";
+const VERSION = "0.0.7-alpha";
 
 class GAME {
     constructor(){
         this.number = 0;
         this.big_number = 0;
         this.TPS = 20;
+        this.essence = 0;
     }
 }
 
@@ -55,11 +56,19 @@ function tryload(){
 const prestige = () => {
     if(Game.number >= getBigNumberPrice(Game)){
         Game.number -= getBigNumberPrice(Game);
-        Game.big_number++;
+        let num = Math.round(1 * getEssenceMult(Game));
+        Game.big_number += num;
     }
 };
 
 const numberClick = () => {
     let num = Math.round(1 * getBigNumberMult(Game));
     Game.number += num;
+};
+
+const ascend = () => {
+    if(Game.big_number >= getEssenceCost(Game)){
+        Game.big_number -= getEssenceCost(Game);
+        Game.essence++;
+    }
 };
