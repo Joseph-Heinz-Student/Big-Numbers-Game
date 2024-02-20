@@ -1,5 +1,5 @@
 const render = (game) =>{
-    if(getNumberPerSecond(game).toString().split(".").length > 1){
+    if(getNumberPerSecond(game).toString().split(".").length != 1){
         let number_per_second = [getNumberPerSecond(game).toString().split(".")[0],getNumberPerSecond(game).toString().split(".")[1].substring(0,1)].join(".");
     }else{
         let number_per_second = getNumberPerSecond(game).toString().split(".")[0];
