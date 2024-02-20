@@ -4,7 +4,7 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
-const VERSION = "0.0.5-alpha";
+const VERSION = "0.0.6-alpha";
 
 class GAME {
     constructor(){
@@ -53,7 +53,7 @@ function tryload(){
 }
 
 const prestige = () => {
-    if(Game.number > getBigNumberPrice(Game)){
+    if(Game.number >= getBigNumberPrice(Game)){
         Game.number -= getBigNumberPrice(Game);
         Game.big_number++;
     }

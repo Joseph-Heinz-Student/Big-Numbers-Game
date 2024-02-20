@@ -30,12 +30,12 @@ const accurateTimer = (fn, time = 1000) => {
 };
 
 const getBigNumberPrice = (game) => {
-  let price = Math.round(1.175**(game.big_number*0.8));
+  let price = Math.round((1.55*game.big_number)+1);
   return price;
 };
 
 const getBigNumberMult = (game) => {
-  let mult = 1.05**(game.big_number*.75);
+  let mult = (0.015*game.big_number)+1;
   return mult;
 };
 
