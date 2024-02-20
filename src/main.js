@@ -4,7 +4,7 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
-const VERSION = "0.0.7-alpha";
+const VERSION = "0.0.8-alpha";
 
 class GAME {
     constructor(){
@@ -12,6 +12,7 @@ class GAME {
         this.big_number = 0;
         this.TPS = 20;
         this.essence = 0;
+        this.auto_numbers = 0;
     }
 }
 
@@ -47,7 +48,8 @@ function tryload(){
         console.error("Load failed");
     }
     gameLoop = accurateTimer(() => {
-        document.title = Game.number;
+        Game.number += getNumberPerSecond(Game) / Game.TPS;
+        //Game.number = Math.round(Game.number);
         save(Game);
         render(Game);
     },1000/Game.TPS);
@@ -70,5 +72,12 @@ const ascend = () => {
     if(Game.big_number >= getEssenceCost(Game)){
         Game.big_number -= getEssenceCost(Game);
         Game.essence++;
+    }
+};
+
+const buyAutoNumber = () => {
+    if(Game.essence >= getAutoNumberCost(Game)){
+        Game.essence -= getAutoNumberCost(Game);
+        Game.auto_numbers++;
     }
 };

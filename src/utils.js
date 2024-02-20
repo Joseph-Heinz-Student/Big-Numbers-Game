@@ -48,3 +48,15 @@ const getEssenceMult = (game) => {
   let mult = (0.015*game.essence)+1;
   return mult;
 };
+
+const getAutoNumberCost = (game) => {
+  let price = Math.round(1.55*game.auto_numbers+1);
+  return price;
+};
+
+const getNumberPerSecond = (game) => {
+  let autos = game.auto_numbers;
+  const BASE_NPS = 0.1;
+  let nps = (autos * BASE_NPS);
+  return nps;
+}

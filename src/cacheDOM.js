@@ -6,3 +6,4 @@ const prestigeButtonDOM = document.querySelector("#prestigeButton");
 const titleDOM = document.querySelector("#title");
 const stats2DOM = document.querySelector("#stats2");
 const ascendButtonDOM = document.querySelector("#ascendButton");
+const autoNumberButtonDOM = document.querySelector("#autoNumberButton");
