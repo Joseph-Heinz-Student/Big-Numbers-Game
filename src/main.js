@@ -4,7 +4,7 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
-const VERSION = "0.0.9-alpha";
+const VERSION = "0.0.10-alpha";
 
 class GAME {
     constructor(){
@@ -13,6 +13,7 @@ class GAME {
         this.TPS = 20;
         this.essence = 0;
         this.auto_numbers = 0;
+        this.number_endings = "long";
     }
 }
 

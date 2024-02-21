@@ -1,17 +1,17 @@
 const render = (game) =>{
-    document.title = numberformat.format(Game.number,{sigfigs:6});
+    document.title = numberformatter.format(Game.number, game);
     statsDOM.innerHTML = `
-    <b>Number</b>: ${numberformat.format(game.number,{sigfigs:6})}<br>
-    <b>Big Number</b>: ${numberformat.format(game.big_number,{sigfigs:6})}<br>
-    <b>Big Number Price</b>: ${numberformat.format(getPrice(game.big_number))} <strong>N</strong> <br>
-    <b>Big Number Multiplier</b>: ${numberformat.format(getBigNumberMult(game),{sigfigs:6})}x<br>`;
+    <b>Number</b>: ${numberformatter.format(game.number, game)}<br>
+    <b>Big Number</b>: ${numberformatter.format(game.big_number, game)}<br>
+    <b>Big Number Price</b>: ${numberformatter.format(getPrice(game.big_number, game))} <strong>N</strong> <br>
+    <b>Big Number Multiplier</b>: ${numberformatter.format(getBigNumberMult(game), game)}x<br>`;
     stats2DOM.innerHTML = `
-    <b>Essence</b>: ${numberformat.format(game.essence,{sigfigs:6})}<br>
-    <b>Essence cost</b>: ${numberformat.format(getPrice(game.essence))} <strong>BN</strong><br>
+    <b>Essence</b>: ${numberformatter.format(game.essence, game)}<br>
+    <b>Essence cost</b>: ${numberformatter.format(getPrice(game.essence, game))} <strong>BN</strong><br>
     <b>Auto Numberers</b>: ${game.auto_numbers} <br> 
-    <b>Auto Numberer Price</b>: ${getPrice(game.auto_numbers)} <strong>E</strong><br>
+    <b>Auto Numberer Price</b>: ${getPrice(game.auto_numbers, game)} <strong>E</strong><br>
     <b>Number Per Second</b>: ${getNumberPerSecond(game).toFixed(1)}<b>N</b>/s`;
-    prestigeButtonDOM.innerHTML = `Prestige for ${numberformat.format(getEssenceMult(game),{sigfigs:6})} <strong>BIG NUMBER</strong>`;
+    prestigeButtonDOM.innerHTML = `Prestige for ${numberformatter.format(getEssenceMult(game), game)} <strong>BIG NUMBER</strong>`;
     
     // show or hide the buy big number button 
     if(game.number >= getPrice(Game.big_number)){
