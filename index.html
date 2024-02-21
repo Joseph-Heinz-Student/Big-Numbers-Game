@@ -11,27 +11,27 @@
         <div class="console-history"></div>
         <input class="console-input" type="text" spellcheck="false">
     </div>
-
-    <h1 id="title"></h1>
-    <p id="stats"></p>
-    <p id="stats2"></p>
-    <button onclick="numberClick()">Number up</button><br>
-    <div id="prestigeDiv">
-        <button onclick="prestige(1)" id="prestigeButton">Prestige for 1 <strong>BIG NUMBER</strong></button> 
-        <button id="prestigeButton10" onclick="prestige(10)">x10</button> 
-        <button id="prestigeButton100" onclick="prestige(100)">x100</button><br>
-    </div>
-    <div id="ascendDiv">
-        <button onclick="ascend(1)" id="ascendButton">Ascend for 1 <strong>Essence</strong></button>
-        <button id="ascendButton10" onclick="ascend(10)">x10</button> 
-        <button id="ascendButton100" onclick="ascend(100)">x100</button><br>
-    </div>
-    <div id="autoNumberDiv">
-        <button onclick="buyAutoNumber(1)" id="autoNumberButton">Buy 1 Auto Numberer</button>
-        <button onclick="buyAutoNumber(10)" id="autoNumber10Button">x10</button>
-        <button onclick="buyAutoNumber(10)" id="autoNumber100Button">x100</button>
-    </div>
-
+    <main>
+        <h1 id="title"></h1>
+        <p id="stats"></p>
+        <p id="stats2"></p>
+        <button onclick="numberClick()">Number up</button><br>
+        <div id="prestigeDiv">
+            <button onclick="prestige(1)" id="prestigeButton">Prestige for 1 <strong>BIG NUMBER</strong></button> 
+            <button id="prestigeButton10" onclick="prestige(10)">x10</button> 
+            <button id="prestigeButton100" onclick="prestige(100)">x100</button><br>
+        </div>
+        <div id="ascendDiv">
+            <button onclick="ascend(1)" id="ascendButton">Ascend for 1 <strong>Essence</strong></button>
+            <button id="ascendButton10" onclick="ascend(10)">x10</button> 
+            <button id="ascendButton100" onclick="ascend(100)">x100</button><br>
+        </div>
+        <div id="autoNumberDiv">
+            <button onclick="buyAutoNumber(1)" id="autoNumberButton">Buy 1 Auto Numberer</button>
+            <button onclick="buyAutoNumber(10)" id="autoNumber10Button">x10</button>
+            <button onclick="buyAutoNumber(10)" id="autoNumber100Button">x100</button>
+        </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/hotkeys-js@3.13.7/dist/hotkeys.min.js"></script>
     <script src="//cdn.rawgit.com/erosson/swarm-numberformat/v0.1.0/dist/swarm-numberformat.min.js"></script>
     <script src="src/cacheDOM.js"></script>
