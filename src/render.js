@@ -4,7 +4,7 @@ const render = (game) =>{
     <b>Number</b>: ${numberformatter.format(game.number, game)}<br>
     <b>Big Number</b>: ${numberformatter.format(game.big_number, game)}<br>
     <b>Big Number Price</b>: ${numberformatter.format(getPrice(game.big_number, game))} <strong>N</strong> <br>
-    <b>Big Number Multiplier</b>: ${numberformatter.format(getBigNumberMult(game), game)}x<br>`;
+    <b>Big Number Multiplier</b>: ${getBigNumberMult(game).toFixed(2)}x<br>`;
     stats2DOM.innerHTML = `
     <b>Essence</b>: ${numberformatter.format(game.essence, game)}<br>
     <b>Essence cost</b>: ${numberformatter.format(getPrice(game.essence, game))} <strong>BN</strong><br>
