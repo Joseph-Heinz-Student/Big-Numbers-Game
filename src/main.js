@@ -4,7 +4,7 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
-const VERSION = "0.0.10-alpha";
+const VERSION = "0.0.11-alpha";
 
 class GAME {
     constructor(){
@@ -50,6 +50,7 @@ function tryload(){
     }
     gameLoop = accurateTimer(() => {
         Game.number += getNumberPerSecond(Game) / Game.TPS;
+        Game.number_endings = numberEndingsDOM.value;
         //Game.number = Math.round(Game.number);
         save(Game);
         render(Game);
