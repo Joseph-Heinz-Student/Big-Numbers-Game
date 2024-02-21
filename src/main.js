@@ -4,7 +4,7 @@
     consts are CAPITALIZED
 */
 const LS = localStorage;
-const VERSION = "0.0.8-alpha";
+const VERSION = "0.0.9-alpha";
 
 class GAME {
     constructor(){
@@ -55,12 +55,14 @@ function tryload(){
     },1000/Game.TPS);
 }
 
-const prestige = () => {
-    if(Game.number >= getBigNumberPrice(Game)){
-        Game.number -= getBigNumberPrice(Game);
-        let num = Math.round(1 * getEssenceMult(Game));
+const prestige = (amt) => {
+    let total = getCompoundingPrice(Game.big_number, amt);
+    if(Game.number >= total){
+        Game.number -= total;
+        let num = Math.round(1 * getEssenceMult(Game)) * amt;
         Game.big_number += num;
-    }
+    }else alert(`Not enough NUMBER\nYou need ${numberformat.format(total)}`);
+    return total;
 };
 
 const numberClick = () => {
@@ -68,16 +70,20 @@ const numberClick = () => {
     Game.number += num;
 };
 
-const ascend = () => {
-    if(Game.big_number >= getEssenceCost(Game)){
-        Game.big_number -= getEssenceCost(Game);
+const ascend = (amt) => {
+    var total = getCompoundingPrice(Game.essence, amt);
+    if(Game.big_number >= total){
+        Game.big_number -= total;
         Game.essence++;
-    }
+    }else alert(`Not enough BIG NUMBER\nYou need ${numberformat.format(total)}`);
+    return total;
 };
 
-const buyAutoNumber = () => {
-    if(Game.essence >= getAutoNumberCost(Game)){
-        Game.essence -= getAutoNumberCost(Game);
+const buyAutoNumber = (amt) => {
+    var total = getCompoundingPrice(Game.auto_numbers, amt);
+    if(Game.essence >= total){
+        Game.essence -= total;
         Game.auto_numbers++;
-    }
+    }else alert(`Not enough ESSENCE\nYou need: ${numberformat.format(total)}`);
+    return total;
 };

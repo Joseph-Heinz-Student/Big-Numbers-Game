@@ -29,34 +29,32 @@ const accurateTimer = (fn, time = 1000) => {
     return { cancel };
 };
 
-const getBigNumberPrice = (game) => {
-  let price = Math.round((1.55*game.big_number)+1);
-  return price;
-};
-
 const getBigNumberMult = (game) => {
-  let mult = (0.015*game.big_number)+1;
+  let mult = (0.035*game.big_number)+1;
   return mult;
-};
-
-const getEssenceCost = (game) => {
-  let price = Math.round(1.55*game.essence+1);
-  return price;
 };
 
 const getEssenceMult = (game) => {
-  let mult = (0.015*game.essence)+1;
+  let mult = (0.035*game.essence)+1;
   return mult;
-};
-
-const getAutoNumberCost = (game) => {
-  let price = Math.round(1.55*game.auto_numbers+1);
-  return price;
 };
 
 const getNumberPerSecond = (game) => {
   let autos = game.auto_numbers;
-  const BASE_NPS = 0.1;
-  let nps = (autos * BASE_NPS);
+  const BASE_NPS = 1;
+  let nps = (autos * BASE_NPS) * getBigNumberMult(game);
   return nps;
+}
+
+const getPrice = (obj) => {
+  let price = Math.round(1.55*obj+1);
+  return price;
+};
+
+const getCompoundingPrice = (obj, amt) => {
+  let total = 0;
+  for(let time = 0; time < amt; time++){
+    total += getPrice(obj+time);
+  }
+  return total;
 }
