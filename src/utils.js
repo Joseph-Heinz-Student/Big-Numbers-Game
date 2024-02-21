@@ -141,10 +141,10 @@ class NumberFormatter {
 
     let intarray = num.int.split(",");
     let finalarray = [intarray[0], intarray[1]];
-    let intlength = finalarray.length - 1;
+    let intlength = intarray.length - finalarray[0].length;
     let ending = this.endings[game.number_endings][intlength];
     var finalnum = `${finalarray[0]}.${finalarray[1]} ${ending}`;
-
+    
     return finalnum;
   }
 }
