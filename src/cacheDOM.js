@@ -21,5 +21,10 @@ const autoNumberDIVDOM = document.querySelector("#autoNumberDiv");
 const autoNumberButtonDOM = document.querySelector("#autoNumberButton");
 const autoNumberButton10DOM = document.querySelector("#autoNumber10Button");
 const autoNumberButton100DOM = document.querySelector("#autoNumber100Button");
+//auto-numberer DOM elements
+const autoBigNumberDIVDOM = document.querySelector("#autoBigNumberDiv");
+const autoBigNumberButtonDOM = document.querySelector("#autoBigNumberButton");
+const autoBigNumberButton10DOM = document.querySelector("#autoBigNumber10Button");
+const autoBigNumberButton100DOM = document.querySelector("#autoBigNumber100Button");
 //settings DOM elements
 const numberEndingsDOM = document.querySelector("#number-endings");

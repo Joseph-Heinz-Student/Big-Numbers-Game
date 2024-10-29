@@ -30,31 +30,39 @@ const accurateTimer = (fn, time = 1000) => {
 };
 
 const getBigNumberMult = (game) => {
-  let mult = (0.035*game.big_number)+1;
+  let mult = (0.015*game.total_big_number)+1;
   return mult;
 };
 
 const getEssenceMult = (game) => {
-  let mult = (0.035*game.essence)+1;
+  let mult = (0.035*game.total_essence)+1;
   return mult;
 };
 
 const getNumberPerSecond = (game) => {
   let autos = game.auto_numbers;
-  const BASE_NPS = 1;
+  const BASE_NPS = 10;
   let nps = (autos * BASE_NPS) * getBigNumberMult(game);
   return nps;
 }
 
-const getPrice = (obj) => {
-  let price = Math.round(1.55*obj+1);
+const getBigNumberPerSecond = (game) => {
+  let autos = game.auto_big_numbers;
+  const BASE_BNPS = 1;
+  let bnps = (autos * BASE_BNPS) * getBigNumberMult(game);
+  return bnps;
+}
+
+const getPrice = (obj, game) => {
+  let price = Math.round(1.55*game[`${obj}_price`]*game[obj]);
   return price;
 };
 
-const getCompoundingPrice = (obj, amt) => {
+const getCompoundingPrice = (obj, game, amt) => {
+  console.log(obj)
   let total = 0;
   for(let time = 0; time < amt; time++){
-    total += getPrice(obj+time);
+    total += getPrice(game[obj]+time, game);
   }
   return total;
 }
@@ -131,6 +139,7 @@ class NumberFormatter {
     }
   }
   format (number, game, params = {decimals:3}) {
+    if (game == null || game == "undefined") return;
     let num = {
       "int" : new Intl.NumberFormat().format(number.toFixed(0)),
       "decimals" : params.decimals

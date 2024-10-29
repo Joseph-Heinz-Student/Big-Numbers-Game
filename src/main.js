@@ -10,9 +10,16 @@ class GAME {
     constructor(){
         this.number = 0;
         this.big_number = 0;
+        this.big_number_price = 10;
+        this.total_big_number = 0;
         this.TPS = 20;
         this.essence = 0;
+        this.essence_price = 10;
+        this.total_essence = 0;
         this.auto_numbers = 0;
+        this.auto_numbers_price = 5;
+        this.auto_big_numbers = 0;
+        this.auto_big_numbers_price = 10;
         this.number_endings = "long";
     }
 }
@@ -54,6 +61,8 @@ function tryload(){
     }
     gameLoop = accurateTimer(() => {
         Game.number += getNumberPerSecond(Game) / Game.TPS;
+        Game.big_number += getBigNumberPerSecond(Game) / Game.TPS;
+        Game.total_big_number += getBigNumberPerSecond(Game) / Game.TPS;
         Game.number_endings = numberEndingsDOM.value;
         //Game.number = Math.round(Game.number);
         save(Game);
@@ -62,11 +71,12 @@ function tryload(){
 }
 
 const prestige = (amt) => {
-    let total = getCompoundingPrice(Game.big_number, amt);
+    let total = getCompoundingPrice("big_number", Game, amt);
     if(Game.number >= total){
         Game.number -= total;
         let num = Math.round(1 * getEssenceMult(Game)) * amt;
         Game.big_number += num;
+        Game.total_big_number += num;
     }else alert(`Not enough NUMBER\nYou need ${numberformat.format(total)}`);
     return total;
 };
@@ -77,19 +87,28 @@ const numberClick = () => {
 };
 
 const ascend = (amt) => {
-    var total = getCompoundingPrice(Game.essence, amt);
+    var total = getCompoundingPrice("essence", Game, amt);
     if(Game.big_number >= total){
         Game.big_number -= total;
-        Game.essence++;
+        Game.essence += amt;
+        Game.total_essence += amt;
     }else alert(`Not enough BIG NUMBER\nYou need ${numberformat.format(total)}`);
     return total;
 };
 
 const buyAutoNumber = (amt) => {
-    var total = getCompoundingPrice(Game.auto_numbers, amt);
+    var total = getCompoundingPrice("auto_numbers", Game, amt);
     if(Game.essence >= total){
         Game.essence -= total;
-        Game.auto_numbers++;
+        Game.auto_numbers += amt;
     }else alert(`Not enough ESSENCE\nYou need: ${numberformat.format(total)}`);
     return total;
 };
+
+const buyAutoBigNumber = (amt) => {
+    var total = getCompoundingPrice("auto_big_numbers", Game, amt);
+    if(Game.essence >= total){
+        Game.essence -= total;
+        Game.auto_big_numbers += amt;
+    }else alert(`Not enough ESSENCE\nYou need ${numberformat.format(total)}`);
+}
