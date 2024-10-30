@@ -1,76 +1,76 @@
 const accurateTimer = (fn, time = 1000) => {
-    // nextAt is the value for the next time the timer should fire.
-    // timeout holds the timeoutID so the timer can be stopped.
-    let nextAt, timeout;
-    // Initilzes nextAt as now + the time in milliseconds you pass
-    // to accurateTimer.
-    nextAt = new Date().getTime() + time;
-   
-    // This function schedules the next function call.
-    const wrapper = () => {
-      // The next function call is always calculated from when the
-      // timer started.
-      nextAt += time;
-      // this is where the next setTimeout is adjusted to keep the
-      //time accurate.
-      timeout = setTimeout(wrapper, nextAt - new Date().getTime());
-      // the function passed to accurateTimer is called.
-      fn();
-    };
-   
-    // this function stops the timer.
-    const cancel = () => clearTimeout(timeout);
-   
-    // the first function call is scheduled.
+  // nextAt is the value for the next time the timer should fire.
+  // timeout holds the timeoutID so the timer can be stopped.
+  let nextAt, timeout;
+  // Initilzes nextAt as now + the time in milliseconds you pass
+  // to accurateTimer.
+  nextAt = new Date().getTime() + time;
+
+  // This function schedules the next function call.
+  const wrapper = () => {
+    // The next function call is always calculated from when the
+    // timer started.
+    nextAt += time;
+    // this is where the next setTimeout is adjusted to keep the
+    //time accurate.
     timeout = setTimeout(wrapper, nextAt - new Date().getTime());
-   
-    // the cancel function is returned so it can be called outside
-    // accurateTimer.
-    return { cancel };
+    // the function passed to accurateTimer is called.
+    fn();
+  };
+
+  // this function stops the timer.
+  const cancel = () => clearTimeout(timeout);
+
+  // the first function call is scheduled.
+  timeout = setTimeout(wrapper, nextAt - new Date().getTime());
+
+  // the cancel function is returned so it can be called outside
+  // accurateTimer.
+  return { cancel };
 };
 
 const getBigNumberMult = (game) => {
-  let mult = (0.015*game.total_big_number)+1;
+  let mult = 0.015 * game.total_big_number + 1;
   return mult;
 };
 
 const getEssenceMult = (game) => {
-  let mult = (0.035*game.total_essence)+1;
+  let mult = 0.035 * game.total_essence + 1;
   return mult;
 };
 
 const getNumberPerSecond = (game) => {
   let autos = game.auto_numbers;
   const BASE_NPS = 10;
-  let nps = (autos * BASE_NPS) * getBigNumberMult(game);
+  let nps = autos * BASE_NPS * getBigNumberMult(game);
   return nps;
-}
+};
 
 const getBigNumberPerSecond = (game) => {
   let autos = game.auto_big_numbers;
   const BASE_BNPS = 1;
-  let bnps = (autos * BASE_BNPS) * getBigNumberMult(game);
+  let bnps = autos * BASE_BNPS * getBigNumberMult(game);
   return bnps;
-}
+};
 
 const getPrice = (obj, game) => {
-  let price = Math.round(1.55*game[`${obj}_price`]*game[obj]);
+  let price = Math.round((1.55 * game[obj]) + game[`${obj}_price`]);
   return price;
 };
 
-const getCompoundingPrice = (obj, game, amt) => {
-  console.log(obj)
+const getCompoundingPrice = (obj, game, amt, flag = false) => {
   let total = 0;
-  for(let time = 0; time < amt; time++){
-    total += getPrice(game[obj]+time, game);
+  for (let time = 0; time < amt; time++) {
+    total += getPrice(obj, game, amt + time);
+    if (flag) console.log(total);
   }
   return total;
-}
+};
 
 class NumberFormatter {
-  constructor(){
+  constructor() {
     this.endings = {
-      "long" : [
+      long: [
         "Thousand",
         "Million",
         "Billion",
@@ -100,10 +100,10 @@ class NumberFormatter {
         "Septenvigintillion",
         "Octovigintillion",
         "Novemvigintillion",
-        "Trigintillion"
+        "Trigintillion",
       ],
 
-      "short" : [
+      short: [
         "K",
         "M",
         "B",
@@ -134,26 +134,26 @@ class NumberFormatter {
         "Spvg",
         "Ocvg",
         "Nmvg",
-        "Tg"
-      ]
-    }
+        "Tg",
+      ],
+    };
   }
-  format (number, game, params = {decimals:3}) {
+  format(number, game, params = { decimals: 2 }) {
     if (game == null || game == "undefined") return;
     let num = {
-      "int" : new Intl.NumberFormat().format(number.toFixed(0)),
-      "decimals" : params.decimals
+      int: new Intl.NumberFormat().format(number.toFixed(number < 1000 ? params.decimals : 0)),
+      decimals: params.decimals,
     };
     num.length = num.int.length;
 
-    if(number < 999999) return num.int;
+    if (number < 999999) return num.int;
 
     let intarray = num.int.split(",");
     let finalarray = [intarray[0], intarray[1]];
     let intlength = intarray.length - finalarray[0].length;
     let ending = this.endings[game.number_endings][intlength];
     var finalnum = `${finalarray[0]}.${finalarray[1]} ${ending}`;
-    
+
     return finalnum;
   }
 }

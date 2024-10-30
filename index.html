@@ -1,58 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style/index.css">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="BIG Numbers Game">
-    <meta property="og:url" content="https://big-numbers-game.vercel.app">
-    <meta property="og:image" content="https://big-numbers-game.vercel.app/img/meta/bng.png">
-    <meta property="og:description" content="Make BIG Numbers, v0.0.12-alpha, with a stock market, card game, and dungeon to come">
-</head>
-<body onload="tryload()">
+    <link rel="stylesheet" href="style/index.css" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="BIG Numbers Game" />
+    <meta property="og:url" content="https://big-numbers-game.vercel.app" />
+    <meta
+      property="og:image"
+      content="https://big-numbers-game.vercel.app/img/meta/bng.png"
+    />
+    <meta
+      property="og:description"
+      content="Make BIG Numbers, v0.0.12-alpha, with a stock market, card game, and dungeon to come"
+    />
+  </head>
+  <body onload="tryload()">
     <div class="console">
-        <div class="console-history"></div>
-        <input class="console-input" type="text" spellcheck="false">
+      <div class="console-history"></div>
+      <input class="console-input" type="text" spellcheck="false" />
     </div>
     <main>
-        <h1 id="title"></h1>
-        <p id="stats"></p>
-        <p id="stats2"></p>
-        <button onclick="numberClick()">Number up</button><br>
-        <div id="prestigeDiv">
-            <button onclick="prestige(1)" id="prestigeButton">Prestige for 1 <strong>BIG NUMBER</strong></button> 
-            <button id="prestigeButton10" onclick="prestige(10)">x10</button> 
-            <button id="prestigeButton100" onclick="prestige(100)">x100</button><br>
-        </div>
-        <div id="ascendDiv">
-            <button onclick="ascend(1)" id="ascendButton">Ascend for 1 <strong>Essence</strong></button>
-            <button id="ascendButton10" onclick="ascend(10)">x10</button> 
-            <button id="ascendButton100" onclick="ascend(100)">x100</button><br>
-        </div>
-        <div id="autoNumberDiv">
-            <button onclick="buyAutoNumber(1)" id="autoNumberButton">Buy 1 Auto Numberer</button>
-            <button onclick="buyAutoNumber(10)" id="autoNumber10Button">x10</button>
-            <button onclick="buyAutoNumber(10)" id="autoNumber100Button">x100</button>
-        </div>
-        <div id="autoBigNumberDiv">
-            <button onclick="buyAutoBigNumber(1)" id="autoBigNumberButton">Buy 1 Auto Big Numberer</button>
-            <button onclick="buyAutoBigNumber(10)" id="autoBigNumber10Button">x10</button>
-            <button onclick="buyAutoBigNumber(10)" id="autoBigNumber100Button">x100</button>
-        </div>
-        <br><br>
-        <label for="number-endings">Number Endings:</label>
-        <select id="number-endings">
-            <option value="long">Long (Million)</option>
-            <option value="short">Short (M)</option>
-        </select>
+      <h1 id="title"></h1>
+      <p id="stats"></p>
+      <p id="stats2"></p>
+      <button onclick="numberClick()">Number up</button><br />
+      <div id="prestigeDiv">
+        <button onclick="prestige(1)" id="prestigeButton">
+          Prestige for 1 <strong>BIG NUMBER</strong>
+        </button>
+        <button id="prestigeButton10" onclick="prestige(10)">x10</button>
+        <button id="prestigeButton100" onclick="prestige(100)">x100</button
+        ><br />
+      </div>
+      <div id="ascendDiv">
+        <button onclick="ascend(1)" id="ascendButton">
+          Ascend for 1 <strong>Essence</strong>
+        </button>
+        <button id="ascendButton10" onclick="ascend(10)">x10</button>
+        <button id="ascendButton100" onclick="ascend(100)">x100</button><br />
+      </div>
+      <div id="autoNumberDiv">
+        <button onclick="buyAutoNumber(1)" id="autoNumberButton">
+          Buy 1 Auto Numberer
+        </button>
+        <button onclick="buyAutoNumber(10)" id="autoNumber10Button">x10</button>
+        <button onclick="buyAutoNumber(10)" id="autoNumber100Button">
+          x100
+        </button>
+      </div>
+      <div id="autoBigNumberDiv">
+        <button onclick="buyAutoBigNumber(1)" id="autoBigNumberButton">
+          Buy 1 Auto Big Numberer
+        </button>
+        <button onclick="buyAutoBigNumber(10)" id="autoBigNumber10Button">
+          x10
+        </button>
+        <button onclick="buyAutoBigNumber(10)" id="autoBigNumber100Button">
+          x100
+        </button>
+      </div>
+      <br /><br />
+      <label for="number-endings">Number Endings:</label>
+      <select id="number-endings">
+        <option value="long">Long (Million)</option>
+        <option value="short">Short (M)</option>
+      </select>
     </main>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/decimal.js/9.0.0/decimal.min.js"
+      integrity="sha512-zPQm8HS4Phjo9pUbbk+HPH3rSWu5H03NFvBpPf6D9EU2xasj0ZxhYAc/lvv/HVDWMSE1Autj19i6nZOfiVQbFQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/hotkeys-js@3.13.7/dist/hotkeys.min.js"></script>
     <script src="src/cacheDOM.js"></script>
     <script src="src/utils.js"></script>
     <script src="src/console.js"></script>
     <script src="src/render.js"></script>
     <script src="src/main.js"></script>
-</body>
+  </body>
 </html>
