@@ -2,8 +2,8 @@ const render = (game) => {
   numeral.defaultFormat("0,0[.]0a");
   document.title = numeral(Number(new Decimal(game.number))).format();
   statsDOM.innerHTML = `
-    <b>Number</b>: ${numberformatter.format(game.number, game)}<br>
-    <b>Big Number</b>: ${numberformatter.format(game.big_number, game)}<br>
+    <b>Number</b>: ${numeral(game.number).format()}<br>
+    <b>Big Number</b>: ${numeral(game.big_number).format()}<br>
     <b>Big Number Price</b>: ${numeral(
       getPrice("big_number", game)
     ).format()} <strong>N</strong> <br>
